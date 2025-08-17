@@ -23,7 +23,7 @@ class Frontend:
         self.upX = []
         self.upY = []
 
-        self.logging = repeater.RepeatTimer(1, LoggingManager.startLoggingLoop)
+        self.logging = repeater.RepeatTimer(5, LoggingManager.startLoggingLoop)
 
 
     def updateTable(self):
@@ -95,22 +95,16 @@ class Frontend:
 
         Timer(1, self.DownloadPlotBackend).start()
 
-
-
         gui.setup_dearpygui()
         gui.show_viewport()
         gui.start_dearpygui()
-
-
-
         gui.destroy_context()
-
 
     def recordingSettings(self,sender):
         print(f"Menu Item: {sender}")
-        if sender==28:
-            self.logging.start()
         if sender==29:
+            self.logging.start()
+        if sender==30:
             self.logging.stop()
     def setSpeedSettings(self,sender,appdata):
         print(sender)
@@ -151,8 +145,6 @@ class Frontend:
         while True:
             download_speed, upload_speed = BackendCore.get_network_traffic()
             time.sleep(1)
-            #print(download_speed)
-            #print(str(i))
             self.downX.append(i)
             self.downY.append(float(download_speed))
 

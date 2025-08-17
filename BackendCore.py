@@ -9,10 +9,8 @@ def get_network_connections():
 
     for conn in connections:
         try:
-            # Получаем информацию о процессе
             proc = psutil.Process(conn.pid) if conn.pid else None
 
-            # Основная информация о подключении
             fd = conn.fd if conn.fd else -1
             family = conn.family.name if hasattr(conn.family, 'name') else conn.family
             type_ = conn.type.name if hasattr(conn.type, 'name') else conn.type
@@ -20,7 +18,6 @@ def get_network_connections():
             raddr = format_address(conn.raddr) if conn.raddr else ""
             status = conn.status
 
-            # Информация о процессе
             pid = conn.pid if conn.pid else -1
             process_name = proc.name() if proc else ""
             process_status = proc.status() if proc else ""
@@ -40,20 +37,15 @@ def get_network_connections():
                 process_cmdline,  # str
                 process_username  # str
             ]
-
             connections_data.append(connection_info)
 
         except (psutil.NoSuchProcess, psutil.AccessDenied):
-            # Если процесс уже завершился или нет доступа
             continue
 
     return connections_data
 
-
 def format_address(addr):
-
     return f"{addr.ip}:{addr.port}" if addr.port else addr.ip
-
 
 def get_network_traffic(interval=1):
 
@@ -80,7 +72,7 @@ def bytes_to_human_readable(bytes_value):
     #for unit in ['B', 'KB', 'MB', 'GB', 'TB']:
     #    if bytes_value < 1024:
     #        return f"{bytes_value:.2f} {unit}/s"
-     #   bytes_value /= 1024
+    #   bytes_value /= 1024
     #return f"{bytes_value:.2f} PB/s"
 
 

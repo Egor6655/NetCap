@@ -1,5 +1,6 @@
 import psutil
 import time
+import socket
 
 
 
@@ -74,6 +75,12 @@ def bytes_to_human_readable(bytes_value):
     #        return f"{bytes_value:.2f} {unit}/s"
     #   bytes_value /= 1024
     #return f"{bytes_value:.2f} PB/s"
+def isIpValid(address):
+    try:
+        socket.inet_aton(address)
+        return True
+    except:
+        return False
 
 
 

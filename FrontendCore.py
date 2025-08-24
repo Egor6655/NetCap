@@ -2,6 +2,7 @@
 import dearpygui.dearpygui as gui
 import BackendCore
 import LoggingManager
+import GeoNetCore
 import SpeedUtil
 import repeater
 import time
@@ -63,6 +64,10 @@ class Frontend:
                 gui.add_menu_item(label="open logs folder", callback=self.openLog)
                 gui.add_menu_item(label="delete system logs", callback=self.systemLogDeleter)
                 gui.add_menu_item(label="delete capture logs", callback=self.logDeleter)
+
+            with gui.menu(label="Map Ip Data"):
+                gui.add_text("you need wait until 30-40 seconds")
+                gui.add_menu_item(label="open map", callback=self.openMap)
 
 
             gui.create_viewport(title=self.title, width=1280, height=720)
@@ -157,6 +162,9 @@ class Frontend:
             except Exception:
                 LoggingManager.logWarning(Exception.args)
                 pass
+    def openMap(self):
+        Timer(1, GeoNetCore.setLocationDataToHtml()).start()
+
     def openLog(self):
         print(os.getcwd())
         subprocess.Popen("explorer /select,"+os.getcwd())

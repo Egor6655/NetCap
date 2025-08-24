@@ -2,7 +2,7 @@
 
 NetCap is the software written in python that allows you see all internet traffic in your network :shushing_face:
 
-<img alt="YOUR-ALT-TEXT" src="https://github.com/Egor6655/NetCap/blob/master/pictures/screenshot1.png">
+<img alt="YOUR-ALT-TEXT" src="https://github.com/Egor6655/NetCap/blob/master/pictures/screenshot.png">
 
 ## V0.2 update: map with geolocation of connected ip 🗺️
 
